@@ -1,5 +1,5 @@
-#ifndef __GEOMETRY_H__
-#define __GEOMETRY_H__
+#ifndef __GEOMETRY_TR_H__
+#define __GEOMETRY_TR_H__
 #include <cassert>
 #include <cmath>
 #include <iostream>
@@ -97,4 +97,4 @@ std::ostream & operator<<( std::ostream & out, const vec<DIM> & v )
   return out;
 }
 
-#endif    //__GEOMETRY_H__
+#endif    //__GEOMETRY_TR_H__

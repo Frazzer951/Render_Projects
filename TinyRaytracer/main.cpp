@@ -6,7 +6,7 @@
 #include <limits>
 #include <vector>
 
-#include "geometry.h"
+#include "geometry_tr.h"
 
 struct Light
 {
