@@ -65,8 +65,7 @@ Vec3f palette_fire( const float d )
 
   float x = std::max( 0.F, std::min( 1.F, d ) );
   if( x < .25F ) return lerp( gray, darkgray, x * 4.F );
-  if( x < .5f )
-    return lerp( darkgray, red, x * 4.f - 1.f );
+  if( x < .5f ) return lerp( darkgray, red, x * 4.f - 1.f );
   else if( x < .75f )
     return lerp( red, orange, x * 4.f - 2.f );
   return lerp( orange, yellow, x * 4.F - 3.F );
