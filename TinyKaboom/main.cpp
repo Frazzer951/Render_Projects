@@ -15,24 +15,24 @@ const float noise_amplitude = 1.0;    // amount of noise applied to the sphere (
 template<typename T>
 inline T lerp( const T & v0, const T & v1, float t )
 {
-  return v0 + ( v1 - v0 ) * std::max( 0.f, std::min( 1.f, t ) );
+  return v0 + ( v1 - v0 ) * std::max( 0.F, std::min( 1.F, t ) );
 }
 
 float hash( const float n )
 {
-  float x = sin( n ) * 43758.5453f;
-  return x - floor( x );
+  float x = std::sin( n ) * 43758.5453F;
+  return x - std::floor( x );
 }
 
 float noise( const Vec3f & x )
 {
   Vec3f p( floor( x.x ), floor( x.y ), floor( x.z ) );
   Vec3f f( x.x - p.x, x.y - p.y, x.z - p.z );
-  f       = f * ( f * ( Vec3f( 3.f, 3.f, 3.f ) - f * 2.f ) );
-  float n = p * Vec3f( 1.f, 57.f, 113.f );
+  f       = f * ( f * ( Vec3f( 3.F, 3.F, 3.F ) - f * 2.F ) );
+  float n = p * Vec3f( 1.F, 57.F, 113.F );
   return lerp(
-      lerp( lerp( hash( n + 0.f ), hash( n + 1.f ), f.x ), lerp( hash( n + 57.f ), hash( n + 58.f ), f.x ), f.y ),
-      lerp( lerp( hash( n + 113.f ), hash( n + 114.f ), f.x ), lerp( hash( n + 170.f ), hash( n + 171.f ), f.x ), f.y ),
+      lerp( lerp( hash( n + 0.F ), hash( n + 1.F ), f.x ), lerp( hash( n + 57.F ), hash( n + 58.F ), f.x ), f.y ),
+      lerp( lerp( hash( n + 113.F ), hash( n + 114.F ), f.x ), lerp( hash( n + 170.F ), hash( n + 171.F ), f.x ), f.y ),
       f.z );
 }
 
@@ -63,13 +63,13 @@ Vec3f palette_fire( const float d )
   const Vec3f darkgray( 0.2, 0.2, 0.2 );
   const Vec3f gray( 0.4, 0.4, 0.4 );
 
-  float x = std::max( 0.f, std::min( 1.f, d ) );
-  if( x < .25f ) return lerp( gray, darkgray, x * 4.f );
-  else if( x < .5f )
+  float x = std::max( 0.F, std::min( 1.F, d ) );
+  if( x < .25F ) return lerp( gray, darkgray, x * 4.F );
+  if( x < .5f )
     return lerp( darkgray, red, x * 4.f - 1.f );
   else if( x < .75f )
     return lerp( red, orange, x * 4.f - 2.f );
-  return lerp( orange, yellow, x * 4.f - 3.f );
+  return lerp( orange, yellow, x * 4.F - 3.F );
 }
 
 float signed_distance( const Vec3f & p )
@@ -88,7 +88,7 @@ bool sphere_trace( const Vec3f & orig, const Vec3f & dir, Vec3f & pos )
   {
     float d = signed_distance( pos );
     if( d < 0 ) return true;
-    pos = pos + dir * std::max( d * 0.1f, .01f );    // note that the step depends on the current distance, if we are
+    pos = pos + dir * std::max( d * 0.1F, .01F );    // note that the step depends on the current distance, if we are
                                                      // far from the surface, we can do big steps
   }
   return false;
@@ -124,7 +124,7 @@ int main()
       {    // the camera is placed to (0,0,3) and it looks along the -z axis
         float noise_level          = ( sphere_radius - hit.norm() ) / noise_amplitude;
         Vec3f light_dir            = ( Vec3f( 10, 10, 10 ) - hit ).normalize();    // one light is placed to (10,10,10)
-        float light_intensity      = std::max( 0.4f, light_dir * distance_field_normal( hit ) );
+        float light_intensity      = std::max( 0.4F, light_dir * distance_field_normal( hit ) );
         framebuffer[i + j * width] = palette_fire( ( -.2 + noise_level ) * 2 ) * light_intensity;
       }
       else
