@@ -23,6 +23,7 @@ include(FetchContent)
 include_directories(include)
 
 add_subdirectory(TinyRaytracer)
+add_subdirectory(TinyKaboom)
 
 file(GLOB_RECURSE Sources
      "*.cpp"
