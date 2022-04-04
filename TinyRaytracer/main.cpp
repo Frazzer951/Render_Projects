@@ -166,10 +166,12 @@ int main()
   const Material red_rubber = { 1.0, { 0.9, 0.1, 0.0, 0.0 }, { 0.3, 0.1, 0.1 }, 10. };
   const Material mirror     = { 1.0, { 0.0, 10.0, 0.8, 0.0 }, { 1.0, 1.0, 1.0 }, 1425. };
 
-  std::vector<Sphere> spheres = { Sphere { vec3 { -3, 0, -16 }, 2, ivory },
-                                  Sphere { vec3 { -1.0, -1.5, -12 }, 2, glass },
-                                  Sphere { vec3 { 1.5, -0.5, -18 }, 3, red_rubber },
-                                  Sphere { vec3 { 7, 5, -18 }, 4, mirror } };
+  std::vector<Sphere> spheres = { Sphere { vec3 { 1.5, -0.5, -18 }, 3, red_rubber } };
+
+  // std::vector<Sphere> spheres = { Sphere { vec3 { -3, 0, -16 }, 2, ivory },
+  //                                Sphere { vec3 { -1.0, -1.5, -12 }, 2, glass },
+  //                                Sphere { vec3 { 1.5, -0.5, -18 }, 3, red_rubber },
+  //                                Sphere { vec3 { 7, 5, -18 }, 4, mirror } };
 
   std::vector<Light> lights = { { { -20, 20, 20 }, 1.5 }, { { 30, 50, -25 }, 1.8 }, { { 30, 20, 30 }, 1.7 } };
 
